@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 2em 3em 2em 3em;
+    font-family: sans-serif;
+}
+
+.widget {
+    box-shadow: 1px 1px 3px #979A9A;
+    padding: 0.3em;
+    border-radius: 4px 4px 4px 4px;
+    background-color: #F4F6F7;
+}
+
+.widget button {
+    background-color: red;
+    border-radius: 50%;
+    border: none;
+    width: 1em;
+    height: 1em;
+}
+
+#choice {
+    position: absolute;
+    padding: 1em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#Dont {
+    background-color: gray;
+}
