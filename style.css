@@ -11,12 +11,16 @@ body {
     background-color: #F4F6F7;
 }
 
-.widget button {
+.button  {
     background-color: red;
     border-radius: 50%;
     border: none;
     width: 1em;
     height: 1em;
+}
+
+.button:active {
+    background-color: darkred;
 }
 
 #choice {

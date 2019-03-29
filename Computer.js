@@ -44,7 +44,7 @@ class Computer {
 
 function createComputeur() {
     for (let i = 0; i < 20; i++) {
-        listWidget.push(new widget(new templateComputer(),new Computer(true, [10, 0, 0, i], 5, 5, ("Computer" + i ))));
+        listWidget.push(new widget(new TemplateWidgetComputer(new Computer(true, [10, 0, 0, i], 5, 5, ("Computer" + i )))));
     }
 }
 

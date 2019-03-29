@@ -24,15 +24,4 @@ class TemplateWidgetComputer {
     hide(node) {
         node.parentElement.remove();
     }
-
-    more() {
-
-    }
-
-    minus() {
-
-    }
-
 }
-
-

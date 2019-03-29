@@ -1,7 +1,4 @@
 class widget {
-    get object() {
-        return this._object;
-    }
     get state() {
         return this._state;
     }
@@ -10,11 +7,7 @@ class widget {
         this._state = value;
     }
 
-    get name() {
-        return this._name;
-    }
-
-    constructor(template, object, posX = 0, posY = 0, width = 2, heigth = 2) {
+    constructor(template, posX = 0, posY = 0, width = 2, heigth = 2) {
         this.posX = posX;
         this.posY = posY;
         this.width = width;
@@ -22,42 +15,42 @@ class widget {
         this.extensible = false;
         this._state = false;
         this.template = template;
-        this._name = "Widget" + object.name;
-        this._object = object;
-
     }
 
     display() {
-        this._state = true;
-        this.template.gen(this.object);
-        closeChooser();
+        if (!this.state) {
+            let base = document.querySelector("body").appendChild(document.createElement("div"));
+            base.appendChild(this.closeButton());
+            this.template.generate(base);
+            this.state = true;
+        }
     }
 
+    closeButton() {
+        let block = document.createElement("button");
+        let self = this;
+        block.addEventListener("click", function () {
+            self.hide(this);
+        });
+        block.className = "button";
+        return block
+    }
 
-    /*hide(){
-        array[1][document.querySelector("select").options.selectedIndex] = false;
-        node.parentNode.remove();
-    }*/
-
-    //document.querySelector("select").options[document.querySelector("select").options.selectedIndex].disabled = true
-
+    hide(node) {
+        if (this.state) {
+            this.template.hide(node);
+            this.state = false;
+        }
+    }
 }
 
-//let test = new widget(new templateComputer());
+
 let listWidget = [];
+let chooser = new widget(new TemplateChooser());
 
 
 // get id of select : $("select option:selected").val()
 
-function openChooser() {
-    document.querySelector("button").disabled = true;
-    generate();
-}
-
-function closeChooser() {
-    document.getElementById("choice").remove();
-    document.querySelector("button").disabled = false;
-}
 
 /*
 disable body
