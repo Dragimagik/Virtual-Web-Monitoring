@@ -48,4 +48,5 @@ function createComputeur() {
     }
 }
 
+let listWidget = [];
 createComputeur();

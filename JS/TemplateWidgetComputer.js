@@ -26,10 +26,6 @@ class TemplateWidgetComputer {
         }
     }
 
-    hide(node) {
-        node.parentElement.remove();
-    }
-
     more() {
 
     }
@@ -38,6 +34,9 @@ class TemplateWidgetComputer {
 
     }
 
+    hide(node) {
+        node.parentElement.remove();
+    }
 }
 
 

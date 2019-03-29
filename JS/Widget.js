@@ -50,6 +50,5 @@ class widget {
 }
 
 
-let listWidget = [];
+
 let chooser = new widget(new TemplateChooser());
-let map;

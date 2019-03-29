@@ -1,6 +1,4 @@
 class TemplateChooser {
-
-
     generate(base) {
         let node = document.createElement("select");
         node.appendChild(this.addComputer());
@@ -15,7 +13,7 @@ class TemplateChooser {
         group.label = "Map";
         let option = document.createElement("option");
         option.appendChild(document.createTextNode("map"));
-        this.disableOption(map,option);
+        this.disableOption(map, option);
         option.addEventListener('click', function () {
             map.display();
         });
@@ -31,7 +29,7 @@ class TemplateChooser {
         listWidget.forEach(function (element, index) {
             option = document.createElement("option");
             option.appendChild(document.createTextNode(element.template.object.name));
-            self.disableOption(element,option);
+            self.disableOption(element, option);
             option.addEventListener('click', function () {
                 listWidget[index].display();
             });
@@ -40,11 +38,11 @@ class TemplateChooser {
         return group;
     }
 
-    getThis(){
+    getThis() {
         return this;
     }
 
-    disableOption(element,option){
+    disableOption(element, option) {
         if (element.state) {
             option.disabled = true;
         }
@@ -57,7 +55,6 @@ class TemplateChooser {
     enableButton() {
         document.querySelector("button").disabled = false;
     }
-
 
     hide(node) {
         document.getElementById("choice").remove();

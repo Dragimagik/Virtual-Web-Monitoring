@@ -1,8 +1,18 @@
 class Map {
-    constructor() {
-        this.listImage = ["corridor", "dinningRoom", "executiveManagementOffice", "executiveOffice", "meetingRoom", "networkRoom", "openSpace", "secretarialOffice"];
+    constructor(listImage) {
+        this.listImage = listImage;
         this.open = true;
     }
 }
 
-map = new widget(new TemplateWidgetMap(new Map()));
+function createImage(){
+    let listImagePath = ["corridor", "diningRoom", "executiveManagementOffice", "executiveOffice", "meetingRoom", "networkRoom", "openSpace", "secretarialOffice"];
+    let listImage = [];
+    listImagePath.forEach(function (element) {
+        listImage.push(new Image("Images/" + element + ".png"))
+    });
+     map = new widget(new TemplateWidgetMap(new Map(listImage)));
+}
+let map;
+createImage();
+
