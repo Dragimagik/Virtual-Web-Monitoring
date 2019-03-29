@@ -5,7 +5,7 @@ class TemplateWidgetComputer {
 
     generate(base) {
         let block;
-        let listDisplay = [this.object.name, this.object.getIp(), this.object._cpu, this.object._ram];
+        let listDisplay = [this.object.name, this.object._ip, this.object._cpu, this.object._ram];
         let listWord = ["cpu: ", "ram: "];
         for (let i = 0; i < 2; i++) {
             block = document.createElement("span");
@@ -17,8 +17,13 @@ class TemplateWidgetComputer {
             block.appendChild(document.createTextNode(listWord[i] + listDisplay[i + 2]));
             base.appendChild(block)
         }
-        document.querySelector("body").appendChild(base).className += "widget";
-        chooser.hide();
+        this.closeChooser();
+    }
+
+    closeChooser() {
+        if (document.getElementById("choice") != null) {
+            chooser.hide();
+        }
     }
 
     hide(node) {

@@ -28,14 +28,14 @@ class Computer {
     }
 
     constructor(state, ip, ram, cpu, name) {
-        this.ip = ip;
+        this._ip = ip;
         this._cpu = cpu;
         this._ram = ram;
         this._name = name;
         this._state = state;
     }
 
-    getIp() {
+    get ip() {
         return this.ip[0] + "." + this.ip[1] + "." + this.ip[2] + "." + this.ip[3]
     }
 }

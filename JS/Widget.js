@@ -7,7 +7,7 @@ class widget {
         this._state = value;
     }
 
-    constructor(template, posX = 0, posY = 0, width = 2, heigth = 2) {
+    constructor(template, width = 2, heigth = 2, posX = 0, posY = 0) {
         this.posX = posX;
         this.posY = posY;
         this.width = width;
@@ -19,8 +19,9 @@ class widget {
 
     display() {
         if (!this.state) {
-            let base = document.querySelector("body").appendChild(document.createElement("div"));
+            let base = document.getElementById("content").appendChild(document.createElement("div"));
             base.appendChild(this.closeButton());
+            base.className = "widget";
             this.template.generate(base);
             this.state = true;
         }
@@ -28,12 +29,16 @@ class widget {
 
     closeButton() {
         let block = document.createElement("button");
-        let self = this;
+        let self = this.getThis();
         block.addEventListener("click", function () {
             self.hide(this);
         });
         block.className = "button";
         return block
+    }
+
+    getThis(){
+        return this;
     }
 
     hide(node) {
@@ -47,15 +52,4 @@ class widget {
 
 let listWidget = [];
 let chooser = new widget(new TemplateChooser());
-
-
-// get id of select : $("select option:selected").val()
-
-
-/*
-disable body
-$("body").attr("id","Dont");
- */
-
-//<div><b>Appended text</b> <button onclick='
-//$("div").parent().remove()
+let map;
