@@ -19,7 +19,7 @@ class TemplateWidgetMap {
         }
     }
 
-    addImage(path, size, one, index = 0) {
+    addImage(path, size, one, index) {
         let image = document.createElement("img");
         image.src = path;
         image.width = image.width / size;
@@ -44,8 +44,7 @@ class TemplateWidgetMap {
     displayOne(img, index) {
         let base = img.parentElement;
         this.deleteImages(img);
-        console.log(index);
-        let image = this.addImage(this.object.listImage[index].path, 1, this.object.listImage[index].display = true);
+        let image = this.addImage(this.object.listImage[index].path, 1, this.object.listImage[index].display = true, index);
         base.appendChild(image);
     }
 

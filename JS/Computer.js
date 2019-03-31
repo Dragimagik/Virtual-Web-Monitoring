@@ -36,15 +36,13 @@ class Computer {
     }
 
     get ip() {
-        return this.ip[0] + "." + this.ip[1] + "." + this.ip[2] + "." + this.ip[3]
+        return this._ip[0] + "." + this._ip[1] + "." + this._ip[2] + "." + this._ip[3];
     }
 }
 
-
-
 function createComputeur() {
     for (let i = 0; i < 20; i++) {
-        listWidget.push(new widget(new TemplateWidgetComputer(new Computer(true, [10, 0, 0, i], 5, 5, ("Computer" + i )))));
+        listWidget.push(new widget(new TemplateWidgetComputer(new Computer(true, [10, 0, 0, i], 5, 5, ("Computer" + i)))));
     }
 }
 

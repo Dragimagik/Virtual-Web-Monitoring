@@ -1,2 +1,0 @@
-- faire des classes mere (abstraite) pour les templates et widget
-- generate templateMap et selection image

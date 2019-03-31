@@ -15,6 +15,7 @@ class widget {
         this.extensible = false;
         this._state = false;
         this.template = template;
+
     }
 
     display() {
@@ -37,7 +38,7 @@ class widget {
         return block
     }
 
-    getThis(){
+    getThis() {
         return this;
     }
 
@@ -49,6 +50,14 @@ class widget {
     }
 }
 
-
-
 let chooser = new widget(new TemplateChooser());
+let listChildren = document.getElementById("content").childNodes;
+setInterval(function () {
+    if (listChildren.length > 0){
+        listChildren.forEach(function (element) {
+            if (typeof listWidget[element.id].template.refresh === "function") {
+                listWidget[element.id].template.refresh(element);
+            }
+        });
+    }
+}, 1000);
