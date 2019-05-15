@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 2em 3em 2em 3em;
-    font-family: sans-serif;
+    background-color: #eeeeee;
 }
 
 #add{
@@ -18,46 +18,12 @@ body {
     color: gray;
 }
 
-#add:hover{
-    color: dodgerblue;
-}
-
-#add:active{
-    color: dodgerblue;
-    border-color: dodgerblue;
-}
-
 .widget {
-    box-shadow: 1px 1px 3px #979A9A;
+    box-shadow: 5px 5px 20px rgba(74,115,159,0.2);
     border-radius: 4px 4px 4px 4px;
     background-color: #F4F6F7;
     display: inline-block;
     margin: 0.5em;
-}
-
-.widget .option {
-    background-color: grey;
-    border-radius: 4px 4px 0px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    padding: 0.3em;
-}
-
-.widget .content{
-    padding: 0.3em;
-}
-
-.button {
-    background-color: red;
-    border-radius: 50%;
-    border: none;
-    width: 1em;
-    height: 1em;
-}
-
-.button:active {
-    background-color: darkred;
 }
 
 #choice {
@@ -67,12 +33,4 @@ body {
     transform: translate(-50%, -50%);
 }
 
-#choice .content{
-    padding: 0;
-}
-
-
-#Dont {
-    background-color: gray;
-}
 

@@ -3,12 +3,15 @@ class TemplateChooser {
         moveAdd();
         let node = document.createElement("select");
         node.appendChild(this.addComputer());
+        node.appendChild(this.addPrinter());
         node.appendChild(this.addMap());
+        node.className = "custom-select"
         base.appendChild(node);
         base.parentElement.id = "choice";
         this.disableButton();
     }
 
+    //a modifié
     addMap() {
         let group = document.createElement("optgroup");
         group.label = "Map";
@@ -27,12 +30,12 @@ class TemplateChooser {
         let group = document.createElement("optgroup");
         group.label = "Computer";
         let self = this.getThis();
-        listWidget.forEach(function (element, index) {
+        listComputer.forEach(function (element, index) {
             option = document.createElement("option");
             option.appendChild(document.createTextNode(element.template.object.name));
             self.disableOption(element, option);
             option.addEventListener('click', function () {
-                listWidget[index].display();
+                listComputer[index].display();
             });
             group.appendChild(option);
         });
@@ -42,17 +45,31 @@ class TemplateChooser {
     addPrinter() {
         let option;
         let group = document.createElement("optgroup");
-        group.label = "Computer";
+        group.label = "Printer";
         let self = this.getThis();
-        listWidget.forEach(function (element, index) {
+        listPrinter.forEach(function (element, index) {
             option = document.createElement("option");
             option.appendChild(document.createTextNode(element.template.object.name));
             self.disableOption(element, option);
             option.addEventListener('click', function () {
-                listWidget[index].display();
+                listPrinter[index].display();
             });
             group.appendChild(option);
         });
+        return group;
+    }
+
+    // a modifié
+    addNetwork() {
+        let group = document.createElement("optgroup");
+        group.label = "Map";
+        let option = document.createElement("option");
+        option.appendChild(document.createTextNode("map"));
+        this.disableOption(map, option);
+        option.addEventListener('click', function () {
+            map.display();
+        });
+        group.appendChild(option);
         return group;
     }
 

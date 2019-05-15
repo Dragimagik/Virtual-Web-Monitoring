@@ -15,7 +15,6 @@ class widget {
         this.extensible = false;
         this._state = false;
         this.template = template;
-
     }
 
     display() {
@@ -24,7 +23,7 @@ class widget {
             let base = this.content();
             widget.appendChild(this.option());
             widget.appendChild(base);
-            widget.className = "widget";
+            widget.className = "card widget";
             this.template.generate(base);
             this.state = true;
         }
@@ -36,20 +35,20 @@ class widget {
         block.addEventListener("click", function () {
             self.hide(this);
         });
-        block.className = "button";
+        block.className = "btn btn-danger";
         return block
     }
 
     option(){
         let menu = document.createElement("div");
-        menu.className = "option";
+        menu.className = "card-header";
         menu.appendChild(this.closeButton());
         return menu
     }
 
     content(){
         let contentWidget = document.createElement("div");
-        contentWidget.className = "content";
+        contentWidget.className = "card-body";
         return contentWidget
     }
 

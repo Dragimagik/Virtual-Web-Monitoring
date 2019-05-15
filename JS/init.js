@@ -7,21 +7,22 @@ function main() {
 
 function createComputeur() {
     for (let i = 0; i < 20; i++) {
-        network.listInfo.push(new Computer(true, [10, 0, 0, i + 1], 5, 5, ("Computer" + i)));
-        listWidget.push(new widget(new TemplateComputer(network.listInfo[network.listInfo.length - 1])));
+        network.listInfo.push(new Computer(true, network.giveIP(), 5, 5, ("Computer" + i)));
+        listComputer.push(new widget(new TemplateComputer(network.listInfo[network.listInfo.length - 1])));
     }
 }
 
 function createPrinter() {
     for (let i = 0; i < 2; i++) {
-        network.listInfo.push(new Printers(("Printer" + i), true, 10, [10, 0, 0, network.listInfo.length + 1]));
-        listWidget.push(new widget(new TemplatePrinter(network.listInfo[network.listInfo.length - 1])));
+        network.listInfo.push(new Printers(("Printer" + i), true, 10, network.giveIP()));
+        listPrinter.push(new widget(new TemplatePrinter(network.listInfo[network.listInfo.length - 1])));
     }
 }
 
 let chooser;
 let network;
-let listWidget = [];
+let listComputer = [];
+let listPrinter = []
 main();
 
 //let listChildren;
