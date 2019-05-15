@@ -4,16 +4,51 @@ body {
     font-family: sans-serif;
 }
 
+#add{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: 2px solid gray;
+    border-radius: 5px;
+    font-size: 2em;
+    height: 2em;
+    width: 2em;
+    color: gray;
+}
+
+#add:hover{
+    color: dodgerblue;
+}
+
+#add:active{
+    color: dodgerblue;
+    border-color: dodgerblue;
+}
+
 .widget {
     box-shadow: 1px 1px 3px #979A9A;
-    padding: 0.3em;
     border-radius: 4px 4px 4px 4px;
     background-color: #F4F6F7;
     display: inline-block;
     margin: 0.5em;
 }
 
-.button  {
+.widget .option {
+    background-color: grey;
+    border-radius: 4px 4px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 0.3em;
+}
+
+.widget .content{
+    padding: 0.3em;
+}
+
+.button {
     background-color: red;
     border-radius: 50%;
     border: none;
@@ -27,12 +62,17 @@ body {
 
 #choice {
     position: absolute;
-    padding: 1em;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
+#choice .content{
+    padding: 0;
+}
+
+
 #Dont {
     background-color: gray;
 }
+

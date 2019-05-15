@@ -20,9 +20,11 @@ class widget {
 
     display() {
         if (!this.state) {
-            let base = document.getElementById("content").appendChild(document.createElement("div"));
-            base.appendChild(this.closeButton());
-            base.className = "widget";
+            let widget = document.getElementById("content").appendChild(document.createElement("div"));
+            let base = this.content();
+            widget.appendChild(this.option());
+            widget.appendChild(base);
+            widget.className = "widget";
             this.template.generate(base);
             this.state = true;
         }
@@ -38,6 +40,19 @@ class widget {
         return block
     }
 
+    option(){
+        let menu = document.createElement("div");
+        menu.className = "option";
+        menu.appendChild(this.closeButton());
+        return menu
+    }
+
+    content(){
+        let contentWidget = document.createElement("div");
+        contentWidget.className = "content";
+        return contentWidget
+    }
+
     getThis() {
         return this;
     }
@@ -50,14 +65,4 @@ class widget {
     }
 }
 
-let chooser = new widget(new TemplateChooser());
-let listChildren = document.getElementById("content").childNodes;
-setInterval(function () {
-    if (listChildren.length > 0){
-        listChildren.forEach(function (element) {
-            if (typeof listWidget[element.id].template.refresh === "function") {
-                listWidget[element.id].template.refresh(element);
-            }
-        });
-    }
-}, 1000);
+

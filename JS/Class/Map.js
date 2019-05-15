@@ -15,4 +15,3 @@ function createImage(){
 }
 let map;
 createImage();
-

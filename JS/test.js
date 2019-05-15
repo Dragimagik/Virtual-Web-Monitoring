@@ -1,1 +1,0 @@
-//document.querySelector("button").addEventListener('click', listWidget[0].display);

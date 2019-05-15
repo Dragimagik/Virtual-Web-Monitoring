@@ -68,6 +68,6 @@ class TemplateWidgetMap {
     }
 
     hide(node) {
-        node.parentElement.remove();
+        node.parentElement.parentElement.remove();
     }
 }
