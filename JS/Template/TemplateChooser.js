@@ -5,6 +5,7 @@ class TemplateChooser {
         node.appendChild(this.addComputer());
         node.appendChild(this.addPrinter());
         node.appendChild(this.addMap());
+        node.appendChild(this.addNetwork())
         node.className = "custom-select"
         base.appendChild(node);
         base.parentElement.id = "choice";
@@ -62,12 +63,12 @@ class TemplateChooser {
     // a modifié
     addNetwork() {
         let group = document.createElement("optgroup");
-        group.label = "Map";
+        group.label = "Network";
         let option = document.createElement("option");
-        option.appendChild(document.createTextNode("map"));
-        this.disableOption(map, option);
+        option.appendChild(document.createTextNode("network"));
+        this.disableOption(listNetwork, option);
         option.addEventListener('click', function () {
-            map.display();
+            listNetwork.display();
         });
         group.appendChild(option);
         return group;

@@ -5,9 +5,9 @@ class TemplateNetwork {
 
     generate(base) {
         let block;
-        let listWord = ["name", "ip", "mask", "nbrDevice"];
-        let listDisplay = [this.object.name,this.object.ip,this.object.stock];
-        for (let i = 0; i < 3; i++) {
+        let listWord = ["name", "ip", "mask", "nbrDevice","load"];
+        let listDisplay = [this.object.name,this.object.ip,this.object.mask,this.object.nbrDevice,this.object.traffic];
+        for (let i = 0; i < listWord.length; i++) {
             block = document.createElement("div");
             block.appendChild(document.createTextNode(listWord[i] + " : " + listDisplay[i]));
             base.appendChild(block);

@@ -1,6 +1,7 @@
 function main() {
     network = new Network("supNetwork", true);
     chooser = new widget(new TemplateChooser());
+    listNetwork = new widget(new TemplateNetwork(network))
     createComputeur();
     createPrinter();
 }
@@ -14,15 +15,16 @@ function createComputeur() {
 
 function createPrinter() {
     for (let i = 0; i < 2; i++) {
-        network.listInfo.push(new Printers(("Printer" + i), true, 10, network.giveIP()));
+        network.listInfo.push(new Printers(("Printer" + i), true, 500, network.giveIP(),));
         listPrinter.push(new widget(new TemplatePrinter(network.listInfo[network.listInfo.length - 1])));
     }
 }
 
 let chooser;
 let network;
+let listNetwork;
 let listComputer = [];
-let listPrinter = []
+let listPrinter = [];
 main();
 
 //let listChildren;

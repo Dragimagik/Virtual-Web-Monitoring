@@ -1,12 +1,20 @@
 class Network extends Info {
+    get ip() {
+        return this._ip[0] + "." + this._ip[1] + "." + this._ip[2] + "." + this._ip[3];
+    }
+
+    get mask() {
+        return this._ip[0] + "." + this._ip[1] + "." + this._ip[2] + "." + this._ip[3];
+    }
+
     constructor(name, state = true, nbrDevice = 0, ip = [10, 0, 0, 0], mask = [255,255,255,0], src = null) {
         super(name, state, src);
         this.traffic = 0;
         this.bandWidth = 8589934592;
         this.listFile = [];
         this.nbrDevice = nbrDevice;
-        this.ip = ip;
-        this.mask = mask;
+        this._ip = ip;
+        this._mask = mask;
         this.listInfo = [];
     }
 

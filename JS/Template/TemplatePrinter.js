@@ -15,6 +15,11 @@ class TemplatePrinter {
         this.closeChooser();
     }
 
+    // afficher la couleur de chaque cartouche
+    color(){
+
+    }
+
     closeChooser() {
         if (document.getElementById("choice") != null) {
             chooser.hide();
