@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    background-color: #eeeeee;
+}
+
+body .container{
+    margin-top: 1em
+}
+
+body .container #clock{
+    font-size: 1.5em;
+    text-align: center;
+}
+
+body .container #content{
+    margin: 1em
+}
+
+.disable{
+    background: rgba(20,20,20,0.3);
+    opacity: 0.2;
+}
+
+#add{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: 2px solid gray;
+    border-radius: 5px;
+    font-size: 2em;
+    height: 2em;
+    width: 2em;
+    color: gray;
+}
+
+.widget {
+    box-shadow: 5px 5px 20px rgba(74,115,159,0.2);
+}
+
+#choice {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+

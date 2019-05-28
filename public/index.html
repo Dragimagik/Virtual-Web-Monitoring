@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Projet ARC</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+                <div id="clock" class="col">
+                </div>
+                <div class="col">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-success" onclick="clock.run()">play</button>
+                        <button type="button" class="btn btn-danger" onclick="clock.stop()">pause</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-secondary" onclick="clock.object.speed = 1">></button>
+                        <button type="button" class="btn btn-secondary" onclick="clock.object.speed = 10">>></button>
+                        <button type="button" class="btn btn-secondary" onclick="clock.object.speed = 60">>>>></button>
+                    </div>
+                </div>
+        </div>
+        <button id="add" onclick="chooser.display()" class="btn btn-outline-dark">+</button>
+        <div id="content" class="row">
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="JS/Log.js"></script>
+    <script src="JS/Template/TemplateChooser.js"></script>
+    <script src="JS/Template/TemplateMap.js"></script>
+    <script src="JS/Template/TemplateNetwork.js"></script>
+    <script src="JS/Template/TemplateComputer.js"></script>
+    <script src="JS/Template/TemplatePrinter.js"></script>
+    <script src="JS/Template/TempletClock.js"></script>
+    <script src="JS/Class/Widget.js"></script>
+    <script src="JS/Class/Info.js"></script>
+    <script src="JS/Class/Network.js"></script>
+    <script src="JS/Class/Computer.js"></script>
+    <script src="JS/Class/Printers.js"></script>
+    <script src="JS/Class/Map.js"></script>
+    <script src="JS/Class/Horloge.js"></script>
+    <script src="JS/Class/Server.js"></script>
+    <script src="JS/init.js"></script>
+</body>
+</html>
