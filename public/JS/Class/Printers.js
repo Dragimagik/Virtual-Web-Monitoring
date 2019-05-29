@@ -22,6 +22,14 @@ class Printers extends Info {
         };
     }
 
+    shutDown(){
+        this.state = false;
+    }
+
+    power(){
+        this.state = true;
+    }
+
     errorPaper(){
         //log
         if(this.paper.stock <= 0){
@@ -59,7 +67,7 @@ class Printers extends Info {
         //log
         if(this.printing){
             this.listFile.push({name: file,size: size})
-        } else {
+        } else if(this.state){
             this.print(file, size);
         }
     }
@@ -71,7 +79,7 @@ class Printers extends Info {
     // finir impression
     async print(file, size) {
         this.printing = true
-        while (size > 1024 && self.errorPaper() && self.errorInk()){
+        while (size > 1024 && self.errorPaper() && self.errorInk() && self.state){
             self.paper.stock--;
             size -= 1024;
             self.ink.stock--;
@@ -79,7 +87,7 @@ class Printers extends Info {
         }
         //log
         this.printing = false;
-        if(this.listFile.length > 0 && this.errorPaper() && this.errorInk()){
+        if(this.listFile.length > 0 && this.errorPaper() && this.errorInk() && this.state){
             name = this.listFile[0].name;
             size = this.listFile[0].size;
             this.listFile.shift();

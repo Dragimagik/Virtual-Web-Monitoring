@@ -16,7 +16,11 @@ class Horloge{
     }
 
     event(val){
-        //console.log(val);
+        for (let i = 0; i < this.listEvent.length; i++) {
+            if(val == this.listEvent[i].val){
+                this.listEvent[i].fun();
+            }
+        }
     }
 
     reset(){
