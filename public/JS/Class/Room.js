@@ -28,7 +28,6 @@ class Room {
 
     reserve(){
         if(this.state && this.meet.nbr > 0){
-            this.use();
             this.meet.nbr--;
             this.meet.list.push()
         }

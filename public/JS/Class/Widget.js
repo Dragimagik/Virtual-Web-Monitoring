@@ -41,9 +41,20 @@ class widget {
         return block
     }
 
+    icon(src){
+        let block = document.createElement("img");
+        block.src = "Images/Icons/"+ src;
+        block.style.width = "1.5em";
+        block.className = "icon";
+        return block
+    }
+
     option(){
         let menu = document.createElement("div");
         menu.className = "card-header";
+        if (this.template.src != null){
+            menu.appendChild(this.icon(this.template.src));
+        }
         menu.appendChild(this.closeButton());
         return menu
     }

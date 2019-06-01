@@ -11,9 +11,8 @@ class Info {
         return this._name;
     }
 
-    constructor(name, state ,src = null) {
+    constructor(name, state) {
         this._name = name;
         this._state = state;
-        this.src = src;
     }
 }

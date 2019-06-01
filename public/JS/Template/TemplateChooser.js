@@ -1,11 +1,16 @@
 class TemplateChooser {
+    constructor(){
+        this.src = null;
+    }
+
     generate(base) {
         moveAdd();
         let node = document.createElement("select");
         node.appendChild(this.addComputer());
         node.appendChild(this.addPrinter());
         node.appendChild(this.addMap());
-        node.appendChild(this.addNetwork())
+        node.appendChild(this.addNetwork());
+        node.appendChild(this.addServer());
         node.className = "custom-select"
         base.appendChild(node);
         base.parentElement.id = "choice";
@@ -69,6 +74,19 @@ class TemplateChooser {
         this.disableOption(network, option);
         option.addEventListener('click', function () {
             network.display();
+        });
+        group.appendChild(option);
+        return group;
+    }
+
+    addServer() {
+        let group = document.createElement("optgroup");
+        group.label = "Server";
+        let option = document.createElement("option");
+        option.appendChild(document.createTextNode("server"));
+        this.disableOption(server, option);
+        option.addEventListener('click', function () {
+            server.display();
         });
         group.appendChild(option);
         return group;

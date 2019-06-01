@@ -1,35 +1,82 @@
 class TemplatePrinter {
-    constructor(object) {
+    constructor(object,src) {
         this.object = object;
         this.base = null;
         this.reload = null;
+        this.src = src;
+        this.first = false;
     }
 
     generate(base) {
-        let block;
-        let listWord = ["name", "ip", "stock", "queue", "ink"];
-        let listDisplay = [this.object.name,this.object.ip,this.object.paper.stock,this.object.listFile,this.object.ink];
-        for (let i = 0; i < 4; i++) {
-            block = document.createElement("div");
-            block.appendChild(document.createElement("span")).appendChild(document.createTextNode(listWord[i] + " : "));
-            block.appendChild(document.createElement("span")).appendChild(document.createTextNode(listDisplay[i]));
-            base.appendChild(block);
-        }
-            /*block = document.createElement("div");
-            block.appendChild(document.createTextNode(listWord[i] + " : "));
-            //block.innerHTML("<div class=\"progress-bar\" role=\"progressbar\" style=\"width: " + this.pourcentage(listDisplay[i]) + "%\"></div>")
-            base.appendChild(block);*/
         this.base = base;
         this.closeChooser();
+        this.basic();
+        if(this.object.state){
+            this.minus();
+        } else {
+            this.disable();
+        }
         this.reload = setInterval(this.refresh,1000,this.base,this.getThis());
+    }
+
+    basic(){
+        let listDisplay = [this.object.name, this.object.ip];
+        let listWord = ["name", "ip"];
+        let block = document.createElement("div")
+        block.className = "Base"
+        for(let i = 0; i < listWord.length; i ++){
+            this.addContent(listWord[i],listDisplay[i],block)
+        }
+        this.base.appendChild(block)
+    }
+
+// bar pour l'affichage
+    minus(){
+        let listDisplay = [this.object.paper.stock,this.object.ink.stock,this.object.listFile];
+        let listWord = ["stock",  "ink" ,"queue"];
+        let block = document.createElement("div")
+        block.className = "Data"
+        for(let i = 0; i < listWord.length-1; i ++){
+            this.addContent(listWord[i],listDisplay[i],block)
+        }
+        this.base.appendChild(block)
+    }
+
+    addContent(text,data,node){
+        let block = document.createElement("div");
+        block.appendChild(document.createElement("span")).appendChild(document.createTextNode(text + " : "));
+        block.appendChild(document.createElement("span")).appendChild(document.createTextNode(data));
+        node.appendChild(block);
+    }
+
+    addPrinting(){
+        let block = document.createElement("div");
+        block.className ="progress";
+        let progress = document.createElement("div");
+        progress.className = "progress-bar progress-bar-striped progress-bar-animated"
+        progress.style.width = "100%"
+        block.appendChild(progress);
+        this.base.appendChild(block);
     }
 
     refresh(node,self){
         if (clock.object.state){
-            console.log("refresh");
-            //for(let i = 0; i < node.childNodes.length; i++){
-                node.childNodes[2].childNodes[1].innerText = self.object.paper.stock
-            //}
+            if(self.object.state){
+                let listDisplay = [self.object.paper.stock,self.object.ink.stock,self.object.listFile];
+                for (let i = 0; i < 2; i++) {
+                    node.childNodes[1].childNodes[i].childNodes[1].innerText = listDisplay[i];
+                }
+                if(self.object.printing.val && !self.first){
+                    self.first = true
+                    self.addPrinting();
+                } else if(!self.object.printing.val && document.getElementsByClassName("progress")[0]) {
+                    self.first = false
+                    document.getElementsByClassName("progress")[0].remove();
+                }
+                self.enable();
+            } else {
+                self.disable();
+            }
         }
     }
 
@@ -45,15 +92,10 @@ class TemplatePrinter {
 
     enable(){
         this.base.className = "card-body";
-        this.object.power();
-        this.reload = setInterval(this.refresh,1000,this.base,this.getThis());
     }
 
     disable(){
-        this.base.className += " disable";
-        this.object.shutDown();
-        clearInterval(this.reload);
-        this.reload = null;
+        this.base.className = "card-body disable";
     }
 
     getThis() {

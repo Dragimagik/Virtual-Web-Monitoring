@@ -7,8 +7,8 @@ class Network extends Info {
         return this._mask[0] + "." + this._mask[1] + "." + this._mask[2] + "." + this._mask[3];
     }
 
-    constructor(name, state = true, nbrDevice = 0, ip = [10, 0, 0, 0], mask = [255,255,255,0], src = null) {
-        super(name, state, src);
+    constructor(name, state = true, nbrDevice = 0, ip = [10, 0, 0, 0], mask = [255,255,255,0]) {
+        super(name, state);
         this.traffic = 0;
         this.bandWidth = 8589934592;
         this.listFile = [];

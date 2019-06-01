@@ -1,50 +1,51 @@
 class TemplateComputer {
-    constructor(object) {
+    constructor(object,src) {
         this.object = object;
         this.base = null;
         this.reload = null;
+        this.src = src;
     }
 
     generate(base) {
         this.base = base;
         this.closeChooser();
         this.basic();
-        if(this.object.state){
+        if (this.object.state) {
             this.minus();
         } else {
             this.disable();
         }
-        this.reload = setInterval(this.refresh,1000,this.base,this.getThis());
+        this.reload = setInterval(this.refresh, 1000, this.base, this.getThis());
     }
 
-    basic(){
+    basic() {
         let listDisplay = [this.object.name, this.object.ip];
         let listWord = ["name", "ip"];
         let block = document.createElement("div")
         block.className = "Base"
-        for(let i = 0; i < 2; i ++){
-            this.addContent(listWord[i],listDisplay[i],block)
+        for (let i = 0; i < listWord.length; i++) {
+            this.addContent(listWord[i], listDisplay[i], block)
         }
         this.base.appendChild(block)
     }
 
-    minus(){
+    minus() {
         let listDisplay = [this.object.cpu, this.object.ram];
         let listWord = ["cpu", "ram"];
         let block = document.createElement("div")
         block.className = "Data"
-        for(let i = 0; i < 2; i ++){
-            this.addContent(listWord[i],listDisplay[i],block)
+        for (let i = 0; i < listWord.length; i++) {
+            this.addContent(listWord[i], listDisplay[i], block)
         }
         this.base.appendChild(block)
     }
 
     // plus tard
-    more(){
+    more() {
 
     }
 
-    addContent(text,data,node){
+    addContent(text, data, node) {
         let block = document.createElement("div");
         block.appendChild(document.createElement("span")).appendChild(document.createTextNode(text + " : "));
         block.appendChild(document.createElement("span")).appendChild(document.createTextNode(data));
@@ -57,9 +58,9 @@ class TemplateComputer {
         }
     }
 
-    refresh(node,self) {
-        if(clock.object.state ){
-            if(self.object.state){
+    refresh(node, self) {
+        if (clock.object.state) {
+            if (self.object.state) {
                 for (let i = 0; i < 2; i++) {
                     node.childNodes[1].childNodes[i].childNodes[1].innerText = self.object.running.length * 2 + Math.trunc(Math.random() * 7);
                 }
@@ -70,11 +71,11 @@ class TemplateComputer {
         }
     }
 
-    enable(){
+    enable() {
         this.base.className = "card-body";
     }
 
-    disable(){
+    disable() {
         this.base.className = "card-body disable";
     }
 

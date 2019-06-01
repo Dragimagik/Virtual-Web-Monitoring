@@ -1,8 +1,9 @@
 class TemplateNetwork {
-    constructor(object) {
+    constructor(object,src) {
         this.object = object;
         this.base = null;
         this.reload = null;
+        this.src = src;
     }
 
     generate(base) {

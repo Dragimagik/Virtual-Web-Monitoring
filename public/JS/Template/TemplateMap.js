@@ -1,8 +1,9 @@
 class TemplateMap {
-    constructor(listRoom) {
+    constructor(listRoom,src) {
         this.surface = {canvas: null,x:null,y:null};
         this.ctx;
         this.listObject = listRoom;
+        this.src = src;
         this.clic = {
             clic: false,
             index: null
@@ -17,7 +18,6 @@ class TemplateMap {
     initClick() {
         let self = this.getThis();
         this.surface.canvas.addEventListener("click", function (e) {
-            console.log("click")
             self.choose(e, (!self.clic.clic) ? null : self.clic.index);
             if (self.clic.clic && self.clic.index != null) {
                 self.showAshenOne();
@@ -53,7 +53,7 @@ class TemplateMap {
     }
 
     drawAllRect() {
-        for (let i = 0; i < image.src.length; i++) {
+        for (let i = 0; i < this.listObject.length; i++) {
             this.drawImage(i,this.listObject[i].posX,this.listObject[i].posY);
             if(!this.listObject[i].meet.free && this.listObject[i].state){
                 this.drawHover(i,"rgb(255,0,0,0.2)",this.listObject[i].posX,this.listObject[i].posY);
@@ -84,7 +84,7 @@ class TemplateMap {
     }
 
     hoverRoom(e) {
-        for (let i = 0; i < image.size[0].length; i++) {
+        for (let i = 0; i < this.listObject.length; i++) {
             this.ctx.beginPath();
             this.ctx.rect( this.listObject[i].posX * 3, this.listObject[i].posY* 3, this.listObject[i].width * 3, this.listObject[i].height * 3);
             if (this.ctx.isPointInPath(e.clientX - this.surface.x, e.clientY - this.surface.y) && this.listObject[i].state && this.point.index != i ) {
@@ -108,7 +108,7 @@ class TemplateMap {
     }
 
     selectRoom(e) {
-        for (let i = 0; i < image.size[0].length; i++) {
+        for (let i = 0; i < this.listObject.length; i++) {
             this.ctx.beginPath();
             this.ctx.rect(this.listObject[i].posX * 3,this.listObject[i].posY* 3, this.listObject[i].width * 3, this.listObject[i].height * 3);
             if (this.ctx.isPointInPath(e.clientX - this.surface.x, e.clientY - this.surface.y)) {
@@ -125,6 +125,7 @@ class TemplateMap {
         if (this.ctx.isPointInPath(e.clientX - this.surface.x, e.clientY - this.surface.y)) {
             this.clic.clic = false;
             this.clic.index = null;
+            this.ctx.clearRect(0, 0, this.surface.canvas.width, this.surface.canvas.height);
             this.drawAllRect();
         }
     }
@@ -161,7 +162,3 @@ class TemplateMap {
         node.parentElement.parentElement.parentElement.remove();
     }
 }
-
-
-
-
