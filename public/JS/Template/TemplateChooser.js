@@ -118,6 +118,6 @@ class TemplateChooser {
 
 function moveAdd() {
     let add = document.getElementById("add");
-    add.style.top = "93%";
+    add.style.top = "1.7em";
     add.style.left = "93%";
 }

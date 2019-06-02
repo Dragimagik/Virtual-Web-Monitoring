@@ -7,10 +7,12 @@ class Network extends Info {
         return this._mask[0] + "." + this._mask[1] + "." + this._mask[2] + "." + this._mask[3];
     }
 
-    constructor(name, state = true, nbrDevice = 0, ip = [10, 0, 0, 0], mask = [255,255,255,0]) {
+    constructor(name, state = true, nbrDevice = 0, ip = [10, 0, 0, 0], mask = [255, 255, 255, 0]) {
         super(name, state);
-        this.traffic = 0;
-        this.bandWidth = 8589934592;
+        this.bandWidth = {
+            stock: 0,
+            max: 8000000000
+        }
         this.listFile = [];
         this.nbrDevice = nbrDevice;
         this._ip = ip;
@@ -18,40 +20,45 @@ class Network extends Info {
         this.listInfo = [];
     }
 
-    shutDown(){
+    shutDown() {
         //log
         this.state = false;
     }
 
-    power(){
+    power() {
         //log
         this.state = true;
     }
 
-    giveIP(){
-        if(this.state){
+    giveIP() {
+        if (this.state) {
             //log
             this.nbrDevice++
-            return [this._ip[0],this._ip[1],this._ip[2],this._ip[3]+this.nbrDevice]
+            return [this._ip[0], this._ip[1], this._ip[2], this._ip[3] + this.nbrDevice]
         }
     }
 
     send(file, size, ip) {
-        if(this.state){
-            //log
-            let info = this.search(ip);
-            if (this.bandWidth > size) {
-                info.receive(file, size);
+        if(clock.object.state){
+            if (this.state) {
+                //log
+                let info = this.search(ip);
+                console.log(info);
+                if (this.bandWidth.max > size) {
+                    this.bandWidth.stock = size;
+                    info.receive(file, size);
+                } else {
+                    let tempSize = size;
+                    this.bandWidth.stock = this.bandWidth.max;
+                    do {
+                        tempSize = tempSize - this.bandWidth.max;
+                    } while (tempSize > 0)
+                    info.receive(file, size);
+                }
             } else {
-                let tempSize = size;
-                do {
-                    tempSize = tempSize - this.bandWidth;
-                } while(tempSize > 0)
-                info.receive(file, size);
+                //log
+                console.log("erreur")
             }
-        } else {
-            //log
-            console.log("erreur")
         }
     }
 
@@ -59,7 +66,7 @@ class Network extends Info {
         let element;
         for (let i = 0; i < this.listInfo.length; i++) {
             element = this.listInfo[i];
-            if(this.compare(ip,element._ip)){
+            if (this.compare(ip, element._ip)) {
                 return element;
             }
         }

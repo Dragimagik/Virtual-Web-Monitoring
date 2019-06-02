@@ -61,8 +61,12 @@ class TemplateComputer {
     refresh(node, self) {
         if (clock.object.state) {
             if (self.object.state) {
-                for (let i = 0; i < 2; i++) {
-                    node.childNodes[1].childNodes[i].childNodes[1].innerText = self.object.running.length * 2 + Math.trunc(Math.random() * 7);
+                if(node.childElementCount == 1){
+                    self.minus();
+                } else {
+                    for (let i = 0; i < 2; i++) {
+                        node.childNodes[1].childNodes[i].childNodes[1].innerText = self.object.running.length * 2 + Math.trunc(Math.random() * 7);
+                    } 
                 }
                 self.enable()
             } else {

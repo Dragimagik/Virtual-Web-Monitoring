@@ -39,19 +39,8 @@ class Server extends Info{
         console.log(computer.template.object.name);
     }
 
-    backupAll(){
-        self = this.getThis();
-        listComputer.forEach(function(element) {
-            self.backup(element);
-        });
-    }
-
     store(size){
         this.storage.modify = true;
         this.storage.stock -= Math.round(size/1000000);
-    }
-
-    getThis() {
-        return this;
     }
 }

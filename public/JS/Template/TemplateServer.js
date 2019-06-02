@@ -1,5 +1,5 @@
 class TemplateServer {
-    constructor(object,src) {
+    constructor(object, src) {
         this.object = object;
         this.base = null;
         this.reload = null;
@@ -34,10 +34,10 @@ class TemplateServer {
         let listWord = ["cpu", "ram", "storage"];
         let block = document.createElement("div")
         block.className = "Data"
-        for (let i = 0; i < listWord.length-1; i++) {
+        for (let i = 0; i < listWord.length - 1; i++) {
             this.addContent(listWord[i], listDisplay[i], block)
         }
-        this.addStorage(listWord[2],block);
+        this.addStorage(listWord[2], block);
         this.base.appendChild(block)
     }
 
@@ -53,11 +53,11 @@ class TemplateServer {
         node.appendChild(block);
     }
 
-    addStorage(text,node){
+    addStorage(text, node) {
         let block = document.createElement("div");
         block.appendChild(document.createElement("span")).appendChild(document.createTextNode(text + " : "));
         let progress = document.createElement("div");
-        progress.className ="progress";
+        progress.className = "progress";
         let progressBar = document.createElement("div");
         progressBar.className = "progress-bar"
         progressBar.style.width = this.pourcentage(this.object.storage) + "%"
@@ -66,8 +66,8 @@ class TemplateServer {
         node.appendChild(block);
     }
 
-    pourcentage(val){
-        return (val.stock/val.max)*100;
+    pourcentage(val) {
+        return (val.stock / val.max) * 100;
     }
 
     closeChooser() {
@@ -79,12 +79,16 @@ class TemplateServer {
     refresh(node, self) {
         if (clock.object.state) {
             if (self.object.state) {
-                for (let i = 0; i < 2; i++) {
-                    node.childNodes[1].childNodes[i].childNodes[1].innerText = Math.trunc(Math.random() * 7);
-                }
-                if(self.object.storage.modify){
-                    self.object.storage.modify = false;
-                    node.childNodes[1].childNodes[2].childNodes[1].childNodes[0].childNodes[0].style.width = self.pourcentage(self.object.storage) + "%"
+                if (node.childElementCount == 1) {
+                    self.minus();
+                } else {
+                    for (let i = 0; i < 2; i++) {
+                        node.childNodes[1].childNodes[i].childNodes[1].innerText = Math.trunc(Math.random() * 7);
+                    }
+                    if (self.object.storage.modify) {
+                        self.object.storage.modify = false;
+                        node.childNodes[1].childNodes[2].childNodes[1].childNodes[0].childNodes[0].style.width = self.pourcentage(self.object.storage) + "%"
+                    }
                 }
                 self.enable()
             } else {
@@ -109,5 +113,9 @@ class TemplateServer {
         clearInterval(this.reload);
         this.reload = null;
         node.parentElement.parentElement.parentElement.remove();
+    }
+
+    getThis() {
+        return this;
     }
 }

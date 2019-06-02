@@ -37,8 +37,8 @@ class Computer extends Info {
     }
 
     send(file, size, ip) {
-        if(this.state){
-            network(file,size,ip);
+        if(this.state && clock.object.state){
+            network.template.object.send(file,size,ip);
         }
     }
 
@@ -46,14 +46,14 @@ class Computer extends Info {
     store(file,size){
         if(this.state){
             this.save.push({name:file,
-            date : Date(),
+            date : clock.object.clock,
             size: size})
         }
     }
 
     //sauvegarde de fichier
     receive(file, size) {
-        if(this.state){
+        if(this.state && clock.object.state){
             this.store(file,size);
         }
     }

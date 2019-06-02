@@ -7,7 +7,7 @@ class Room {
         this.width = width;
         this.height = height;
         this.name = name
-        this.state = true;
+        this.state = false;
         this.meet = {
             list: [],
             free: true,

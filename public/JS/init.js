@@ -1,7 +1,7 @@
 function main() {
-
+    logBase = document.getElementById("log");
     chooser = new widget(new TemplateChooser(),0);
-    network = new widget(new TemplateNetwork(new Network("supNetwork", true),"wifi.png"));
+    network = new widget(new TemplateNetwork(new Network("supNetwork", true),"wifi.png"),5);
     initImage();
     map = new widget(new TemplateMap(listRoom,"map.png"),5)
     createComputeur();
@@ -25,7 +25,7 @@ let image = {
 function initEvent(){
     let baseEvent = {
         val: [27900,27900 + Math.trunc(Math.random() * 15),59400,59400 + Math.trunc(Math.random() * 15),59400],
-        fun: [startComputer,openDoor,shutComputer,closeDoor,server.template.object.backupAll]
+        fun: [startComputer,openDoor,shutComputer,closeDoor,backupAll]
     }
     for (let i = 0; i < baseEvent.val.length; i++) {
         clock.object.listEvent.push(new Event(baseEvent.val[i],baseEvent.fun[i]))        
@@ -56,6 +56,7 @@ function createServer() {
     server = new widget(new TemplateServer(network.template.object.listInfo[network.template.object.listInfo.length - 1],"server.png"));
 }
 
+let logBase;
 let chooser;
 let clock;
 let network;
@@ -114,4 +115,10 @@ function shutServer(){
 
 function shutAll(){
 
+}
+
+function backupAll(){
+    for (let i = 0; i < listComputer.length; i++) {
+        server.template.object.backup(listComputer[i])
+    }
 }
