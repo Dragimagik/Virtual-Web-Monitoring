@@ -1,13 +1,11 @@
 class Meeting{
-    constructor(begin,room){
-        this.room = room;
-        this.begin = begin;
-        this.end = begin + Math.trunc(Math.random() * 9000);
-        this.addEvent()
+    constructor(begin){
+        this.begin = new Event(begin,listRoom[6].use);
+        this.end = new Event(begin + Math.trunc(Math.random() * 9000),listRoom[6].release)
+        this.addMeet();
     }
 
-    addEvent(){
-        clock.object.listEvent.push(new Event(this.begin,this.room.use));
-        clock.object.listEvent.push(new Event(this.end,this.room.release));
+    addMeet(){
+        listRoom[6].meet.list.push(this)
     }
 }
