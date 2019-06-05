@@ -7,9 +7,7 @@ class widget {
         this._state = value;
     }
 
-    constructor(template, width = 4, heigth = 2, posX = 0, posY = 0) {
-        this.posX = posX;
-        this.posY = posY;
+    constructor(template, width = 4, heigth = 2) {
         this.width = width;
         this.heigth = heigth;
         this.extensible = false;

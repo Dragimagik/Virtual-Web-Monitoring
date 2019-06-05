@@ -11,7 +11,7 @@ class Network extends Info {
         super(name, state);
         this.bandWidth = {
             stock: 0,
-            max: 8000000000
+            max: 800000000
         }
         this.listFile = [];
         this.nbrDevice = nbrDevice;

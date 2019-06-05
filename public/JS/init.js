@@ -42,28 +42,28 @@ function createClock() {
     clock.generate();
 }
 
-function people(){
+function people() {
     initSpecial();
     initSenior();
     initDev();
 }
 
-function initDev(){
+function initDev() {
     for (let i = 0; i < 12; i++) {
-        listPeople.push(new Dev("dev",listComputer[i+5].template.object))
+        listPeople.push(new Dev("dev", listComputer[i + 5].template.object))
     }
 }
 
-function initSenior(){
+function initSenior() {
     for (let i = 0; i < 2; i++) {
-        listPeople.push(new Senior("senior",listComputer[i+1].template.object))
+        listPeople.push(new Senior("senior", listComputer[i + 1].template.object))
     }
 }
 
-function initSpecial(){    
-    listPeople.push(new Senior("director",listComputer[0].template.object))
-    listPeople.push(new Dev("system",listComputer[4].template.object))
-    listPeople.push(new Secret("secretary",listComputer[3].template.object))
+function initSpecial() {
+    listPeople.push(new Senior("director", listComputer[0].template.object))
+    listPeople.push(new Dev("system", listComputer[4].template.object))
+    listPeople.push(new Secret("secretary", listComputer[3].template.object))
 }
 
 function createComputeur() {

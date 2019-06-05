@@ -1,52 +1,14 @@
-class User{
-    constructor(grade,computer){
-        this.grade = grade;
-        this.computer = computer;
-    }
+Dev = {
+    save: listComputer[Math.round(Math.random() * listComputer.length)].store("projet.js", 1024),
+    print: listComputer[Math.round(Math.random() * listComputer.length)].send("test.txt", ‭25600‬)
 }
 
-class Dev extends User{
-    constructor(grade,computer){
-        super(grade,computer)
-    }
-
-    save(){
-        //definir parametre
-        this.computer.store("projet.js",1024)
-    }
-
-    print(){
-        //definir parametre
-        this.computer.send();
-    }
+Senior = {
+    meet: new Meeting(clock.object.clock),
+    print: listComputer[Math.round(Math.random() * listComputer.length)].send("test.txt", ‭10240‬)
 }
 
-class Senior extends User{
-    constructor(grade,computer){
-        super(grade,computer)
-    }
-
-    meet(){
-        new Meeting(clock.object.clock)
-    }
-
-    print(){
-        //definir parametre
-        this.computer.send();
-    }
-}
-
-class Secret extends User{
-    constructor(grade,computer){
-        super(grade,computer)
-    }
-
-    meet(){
-        new Meeting(clock.object.clock)
-    }
-
-    print(){
-        //definir parametre
-        this.computer.send();
-    }
+Secret = {
+    meet: new Meeting(clock.object.clock),
+    print: listComputer[Math.round(Math.random() * listComputer.length)].send("test.txt", 5120)
 }
