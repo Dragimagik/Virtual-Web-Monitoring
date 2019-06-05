@@ -22,10 +22,10 @@ class Horloge {
                 this.listEvent[i].state = false
             }
         }
-        this.eventMeeting();
+        this.eventMeeting(val);
     }
 
-    eventMeeting(){
+    eventMeeting(val){
         for (let i = 0; i < listRoom[6].meet.list.length; i++) {
             if (val >= listRoom[6].meet.list[i].begin.val && this.listEvent[i].state) {
                 listRoom[6].meet.list[i].begin.fun();

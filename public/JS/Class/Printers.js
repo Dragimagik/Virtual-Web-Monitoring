@@ -36,9 +36,8 @@ class Printers extends Info {
     }
 
     errorPaper() {
-        //log
         if (this.paper.stock <= 0) {
-            console.log("error paper", this.paper);
+            log(this.name,"manque papier");
             return false;
         } else {
             return true;
@@ -48,7 +47,7 @@ class Printers extends Info {
     errorInk() {
         //log
         if (this.ink.stock <= 0) {
-            console.log("error ink", this.ink);
+            log(this.name,"manque encre");
             return false;
         } else {
             return true;
@@ -56,27 +55,28 @@ class Printers extends Info {
     }
 
     reloadPaper() {
-        //log
         this.paper.stock = 500;
         receive(listFile[0].name, listFile[0].size);
+        log(this.name,"rechargement papier");
     }
 
     reloadInk() {
-        //log
         this.ink.stock = 5000;
         receive(listFile[0].name, listFile[0].size);
+        log(this.name,"rechargement encre");
     }
 
     // ajout de la queue d'attente
     receive(file, size) {
-        //log
         if (this.printing.val) {
             this.listFile.push({ name: file, size: size })
+            log(this.name,"ajout a la queue d'impression");
         } else if (this.state) {
             this.printing.val = true;
             this.printing.file = file;
             this.printing.size = size;
             this.printing.reload = setInterval(this.print, (1000/clock.object.state), this)
+            log(this.name,"impression du fichier (" + file + ")");
         }
     }
 

@@ -1,9 +1,9 @@
 const socket = io.connect('http://127.0.0.1:8080');
 
 function log(name,message){
-    displayLog(name,message,clock.object.clock)
+    displayLog(name,message,clock.object.time())
     removeLog();
-    socket.emit("log",{name:name,date:clock.object.clock,message:message});
+    socket.emit("log",{name:name,date:clock.object.time(),message:message});
 }
 
 function displayLog(name,message,date){

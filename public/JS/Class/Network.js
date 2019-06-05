@@ -21,18 +21,17 @@ class Network extends Info {
     }
 
     shutDown() {
-        //log
         this.state = false;
+        log(this.name,"erreur réseaux");
     }
 
     power() {
-        //log
         this.state = true;
+        log(this.name,"démarrage réseaux");
     }
 
     giveIP() {
         if (this.state) {
-            //log
             this.nbrDevice++
             return [this._ip[0], this._ip[1], this._ip[2], this._ip[3] + this.nbrDevice]
         }
@@ -41,7 +40,6 @@ class Network extends Info {
     send(file, size, ip) {
         if(clock.object.state){
             if (this.state) {
-                //log
                 let info = this.search(ip);
                 console.log(info);
                 if (this.bandWidth.max > size) {
@@ -55,9 +53,9 @@ class Network extends Info {
                     } while (tempSize > 0)
                     info.receive(file, size);
                 }
+                log(this.name,"envoie de fichier");
             } else {
-                //log
-                console.log("erreur")
+                log(this.name,"erreur envoie de fichier");
             }
         }
     }

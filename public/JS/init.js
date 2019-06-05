@@ -3,13 +3,13 @@ function main() {
     chooser = new widget(new TemplateChooser(), 0);
     network = new widget(new TemplateNetwork(new Network("supNetwork", true), "wifi.png"), 5);
     initImage();
-    map = new widget(new TemplateMap(listRoom, "map.png"), 5)
+    map = new widget(new TemplateMap(listRoom, "map.png"), 0)
     createComputeur();
     createPrinter();
     createClock();
     createServer();
     initEvent();
-    people();
+    initLocal();
 }
 
 function initImage() {
@@ -40,30 +40,6 @@ function initEvent() {
 function createClock() {
     clock = new TemplateClock(new Horloge(0), document.getElementById("clock"));
     clock.generate();
-}
-
-function people() {
-    initSpecial();
-    initSenior();
-    initDev();
-}
-
-function initDev() {
-    for (let i = 0; i < 12; i++) {
-        listPeople.push(new Dev("dev", listComputer[i + 5].template.object))
-    }
-}
-
-function initSenior() {
-    for (let i = 0; i < 2; i++) {
-        listPeople.push(new Senior("senior", listComputer[i + 1].template.object))
-    }
-}
-
-function initSpecial() {
-    listPeople.push(new Senior("director", listComputer[0].template.object))
-    listPeople.push(new Dev("system", listComputer[4].template.object))
-    listPeople.push(new Secret("secretary", listComputer[3].template.object))
 }
 
 function createComputeur() {
@@ -103,12 +79,14 @@ function closeDoor() {
     for (let i = 0; i < listRoom.length; i++) {
         listRoom[i].close();
     }
+    log("Horloge","Ferture des portes");
 }
 
 function openDoor() {
     for (let i = 0; i < listRoom.length; i++) {
         listRoom[i].open();
     }
+    log("Horloge","Ouverture des portes");
 }
 
 function startAll() {
@@ -119,18 +97,21 @@ function startComputer() {
     for (let i = 0; i < listComputer.length; i++) {
         listComputer[i].template.object.power()
     }
+    log("Horloge","Allumages des ordinateurs");
 }
 
 function startPrinter() {
     for (let i = 0; i < listPrinter.length; i++) {
         listPrinter[i].template.object.power()
     }
+    log("Horloge","Allumages des imprimantes");
 }
 
 function shutComputer() {
     for (let i = 0; i < listComputer.length; i++) {
         listComputer[i].template.object.shutDown();
     }
+    log("Horloge","Extenctions des ordinateurs");
 }
 
 function shutPrinter() {
@@ -151,4 +132,5 @@ function backupAll() {
     for (let i = 0; i < listComputer.length; i++) {
         server.template.object.backup(listComputer[i])
     }
+    log("Serveur","Backup des ordinateurs");
 }

@@ -55,9 +55,12 @@ class TemplateMap {
     drawAllRect() {
         for (let i = 0; i < this.listObject.length; i++) {
             this.drawImage(i,this.listObject[i].posX,this.listObject[i].posY);
-            if(!this.listObject[i].meet.free && this.listObject[i].state){
-                this.drawHover(i,"rgb(255,0,0,0.2)",this.listObject[i].posX,this.listObject[i].posY);
-            } else if (!this.listObject[i].state || this.point.index == i) {
+            if(i == 6){
+                if( !this.listObject[i].meet.free && this.listObject[i].state){
+                    this.drawHover(i,"rgb(255,0,0,0.2)",this.listObject[i].posX,this.listObject[i].posY);
+                }
+            }
+            if (!this.listObject[i].state || this.point.index == i) {
                 this.drawHover(i,"rgb(0,0,0,0.3)",this.listObject[i].posX,this.listObject[i].posY);
             }
         }
@@ -65,9 +68,12 @@ class TemplateMap {
 
     drawImage(i,x=0,y=0,size=3) {
         this.ctx.drawImage(this.listObject[i].image,x*size,y * size, this.listObject[i].width * size, this.listObject[i].height * size);
-        if(!this.listObject[i].meet.free && this.listObject[i].state){
-            this.drawHover(i,"rgb(255,0,0,0.2)",x,y,size);
-        }else if(!this.listObject[i].state){
+        if(i == 6){
+            if(!this.listObject[i].meet.free && this.listObject[i].state){
+                this.drawHover(i,"rgb(255,0,0,0.2)",x,y,size);
+            }
+        }
+        if(!this.listObject[i].state){
             this.drawHover(i,"rgb(0,0,0,0.3)",x,y,size);
         }
     }
@@ -91,7 +97,7 @@ class TemplateMap {
                 this.point.last = this.point.index
                 this.point.index = i;
                 this.drawImage(i, this.listObject[i].posX, this.listObject[i].posY);
-                this.drawHover(i,(this.listObject[i].meet.free) ?"rgb(0,0,0,0.3)": "rgb(255,0,0,0.2)",this.listObject[i].posX, this.listObject[i].posY);
+                this.drawHover(i,"rgb(0,0,0,0.3)",this.listObject[i].posX, this.listObject[i].posY);
                 if(this.point.last != null){
                     this.drawImage(this.point.last,this.listObject[this.point.last].posX,this.listObject[this.point.last].posY)
                 }

@@ -26,6 +26,19 @@ class widget {
             widget.className = "card widget";
             this.template.generate(base);
             this.state = true;
+            this.save(true);
+        }
+    }
+    
+    save(val){
+        if(this.template.object instanceof Computer){
+            saveLocalComputer()
+        } else if(this.template.object instanceof Server){
+            saveLocalServer(val)
+        } else if(this.template instanceof TemplateMap){
+            saveLocalMap(val)
+        } else if(this.template.object instanceof Network){
+            saveLocalNetwork(val)
         }
     }
 
@@ -71,6 +84,7 @@ class widget {
         if (this.state) {
             this.template.hide(node);
             this.state = false;
+            this.save(false);
         }
     }
 }

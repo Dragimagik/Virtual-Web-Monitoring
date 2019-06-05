@@ -32,15 +32,18 @@ class Server extends Info{
     }
 
     send(file, size, ip) {
+        log(this.name,"envoie de fichier");
         network(file,size,ip);
     }
 
     backup(computer){
+        // log
         console.log(computer.template.object.name);
     }
 
     store(size){
         this.storage.modify = true;
         this.storage.stock -= Math.round(size/1000000);
+        log(this.name,"sauvegarde de fichier");
     }
 }
