@@ -15,8 +15,11 @@ body .container #clock{
 }
 
 body .container #content{
-    margin: 1em;
     min-height: 15em;
+}
+
+body .container .sub-container{
+    margin-top : 1em;
 }
 
 body .container #log .card .card-body ul li{

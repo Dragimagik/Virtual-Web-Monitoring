@@ -25,7 +25,11 @@ class Computer extends Info {
         this._cpu = cpu;
         this._ram = ram;
         this.running = ["OS"];
-        this.save = []
+        this.storage = {
+            max: 100,
+            stock: 23,
+            modify: false 
+        }
     }
 
     shutDown(){
@@ -46,11 +50,15 @@ class Computer extends Info {
     //stockage d'un fichier
     store(file,size){
         if(this.state){
-            this.save.push({name:file,
-            date : clock.object.clock,
-            size: size})
+            let temp = this.storage.stock + size / 1000000
+            if(temp < this.storage.max){
+                this.storage.stock = temp;
+                this.storage.modify = true;
+                log(this.name,"sauvegarde du fichier (" + file +")");
+            } else {
+                log(this.name,"fichier trop lourd");
+            }
         }
-        log(this.name,"sauvegarde du fichier(" + file +")");
     }
 
     //sauvegarde de fichier

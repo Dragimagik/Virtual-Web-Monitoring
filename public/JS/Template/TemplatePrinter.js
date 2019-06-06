@@ -72,9 +72,9 @@ class TemplatePrinter {
                     if (self.object.printing.val && !self.first) {
                         self.first = true
                         self.addPrinting();
-                    } else if (!self.object.printing.val && document.getElementsByClassName("progress")[0]) {
+                    } else if (!self.object.printing.val && self.base.childElementCount > 2) {
                         self.first = false
-                        document.getElementsByClassName("progress")[0].remove();
+                        self.base.childNodes[2].remove();
                     }
                 }
                 self.enable();

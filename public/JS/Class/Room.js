@@ -35,14 +35,14 @@ class MeetingRoom extends Room{
     }
 
     use(){
-        if(listRoom[6].state && listRoom[6].meet.list.length < 2){
+        if(listRoom[6].state ){
             listRoom[6].meet.free = false;
-            log(this.name,"utilisation pour une réunion");
+            log(listRoom[6].name,"utilisation pour une réunion");
         }
     }
 
     release(){
         listRoom[6].meet.free = true;
-        log(this.name,"fin de réunion");
+        log(listRoom[6].name,"fin de réunion");
     }
 }

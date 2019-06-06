@@ -37,8 +37,16 @@ class Server extends Info{
     }
 
     backup(computer){
-        // log
-        console.log(computer.template.object.name);
+        if(this.state){
+            let temp = this.storage.stock + computer.template.object.storage.stock
+            if(temp < this.storage.max){
+                this.storage.stock = temp;
+                this.storage.modify = true;
+                log(this.name,"backup: " + computer.template.object.name);
+            } else {
+                log(this.name,"impossible de backup: " + computer.template.object.name);
+            }
+        }
     }
 
     store(size){

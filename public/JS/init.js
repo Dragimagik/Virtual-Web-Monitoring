@@ -29,8 +29,8 @@ function initImage() {
 
 function initEvent() {
     let baseEvent = {
-        val: [27900, 27900 + Math.trunc(Math.random() * 15), 59400, 59400 + Math.trunc(Math.random() * 15), 59400],
-        fun: [startComputer, openDoor, shutComputer, closeDoor, backupAll]
+        val: [27900, 27900 + Math.trunc(Math.random() * 15), 59400 + Math.trunc(Math.random() * 15), 59400],
+        fun: [startComputer, openDoor,  closeDoor, backupAll]
     }
     for (let i = 0; i < baseEvent.val.length; i++) {
         clock.object.listEvent.push(new Event(baseEvent.val[i], baseEvent.fun[i]))
@@ -133,4 +133,5 @@ function backupAll() {
         server.template.object.backup(listComputer[i])
     }
     log("Serveur","Backup des ordinateurs");
+    shutComputer();
 }

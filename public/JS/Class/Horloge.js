@@ -27,11 +27,11 @@ class Horloge {
 
     eventMeeting(val){
         for (let i = 0; i < listRoom[6].meet.list.length; i++) {
-            if (val >= listRoom[6].meet.list[i].begin.val && this.listEvent[i].state) {
+            if (val >= listRoom[6].meet.list[i].begin.val && listRoom[6].meet.list[i].begin.state) {
                 listRoom[6].meet.list[i].begin.fun();
                 listRoom[6].meet.list[i].begin.state = false
             }
-            if (val >= listRoom[6].meet.list[i].end.val && this.listEvent[i].state) {
+            if (val >= listRoom[6].meet.list[i].end.val && listRoom[6].meet.list[i].end.state) {
                 listRoom[6].meet.list[i].end.fun();
                 listRoom[6].meet.list[i].end.state = false
             }

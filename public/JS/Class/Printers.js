@@ -37,7 +37,7 @@ class Printers extends Info {
 
     errorPaper() {
         if (this.paper.stock <= 0) {
-            log(this.name,"manque papier");
+            log(this.name, "manque papier");
             return false;
         } else {
             return true;
@@ -47,7 +47,7 @@ class Printers extends Info {
     errorInk() {
         //log
         if (this.ink.stock <= 0) {
-            log(this.name,"manque encre");
+            log(this.name, "manque encre");
             return false;
         } else {
             return true;
@@ -56,44 +56,50 @@ class Printers extends Info {
 
     reloadPaper() {
         this.paper.stock = 500;
-        receive(listFile[0].name, listFile[0].size);
-        log(this.name,"rechargement papier");
+        log(this.name, "rechargement papier");
     }
 
     reloadInk() {
         this.ink.stock = 5000;
-        receive(listFile[0].name, listFile[0].size);
-        log(this.name,"rechargement encre");
+        log(this.name, "rechargement encre");
     }
 
     // ajout de la queue d'attente
     receive(file, size) {
         if (this.printing.val) {
             this.listFile.push({ name: file, size: size })
-            log(this.name,"ajout a la queue d'impression");
+            log(this.name, "ajout a la queue d'impression");
         } else if (this.state) {
             this.printing.val = true;
             this.printing.file = file;
             this.printing.size = size;
-            this.printing.reload = setInterval(this.print, (1000/clock.object.state), this)
-            log(this.name,"impression du fichier (" + file + ")");
+            this.printing.reload = setInterval(this.print, 1000, this)
+            log(this.name, "impression du fichier (" + file + ")");
         }
     }
 
     print(self) {
         if (clock.object.state) {
-            if (self.printing.size > 0 && self.state && self.errorPaper() && self.errorInk()) {
-                self.paper.stock--;
-                self.printing.size -= 1024;
-                self.ink.stock--;
-            } else if (self.state && self.errorPaper() && self.errorInk() && self.listFile.length > 0) {
-                self.printing.name = self.listFile[0].name;
-                self.printing.size = self.listFile[0].size;
-                self.listFile.shift();
-            } else {
-                clearInterval(self.printing.reload);
-                self.printing.reload = null;
-                self.printing.val = false;
+            if (self.state) {
+                if (!self.errorPaper() || !self.errorInk()) {
+                    self.reloadInk();
+                    self.reloadPaper();
+                } else {
+                    if (self.printing.size > 0) {
+                        self.paper.stock -= Math.round(clock.object.speed / 6);
+                        self.printing.size -= 512000 * Math.round(clock.object.speed / 6);
+                        self.ink.stock -= Math.round(clock.object.speed / 6);
+                    } else if (self.listFile.length > 0) {
+                        self.printing.name = self.listFile[0].name;
+                        self.printing.size = self.listFile[0].size;
+                        log(this.name, "impression du fichier (" + self.printing.name + ")");
+                        self.listFile.shift();
+                    } else {
+                        clearInterval(self.printing.reload);
+                        self.printing.reload = null;
+                        self.printing.val = false;
+                    }
+                }
             }
         }
     }

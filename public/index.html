@@ -19,13 +19,13 @@
                     <button type="button" class="btn btn-danger" onclick="clock.stop()">pause</button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-secondary" onclick="clock.object.speed = 1">></button>
-                    <button type="button" class="btn btn-secondary" onclick="clock.object.speed = 10">>></button>
-                    <button type="button" class="btn btn-secondary" onclick="clock.object.speed = 60">>>>></button>
+                    <button type="button" class="btn btn-secondary" onclick="clock.object.speed = 1">x1</button>
+                    <button type="button" class="btn btn-secondary" onclick="clock.object.speed = 10">x10</button>
+                    <button type="button" class="btn btn-secondary" onclick="clock.object.speed = 60">x60</button>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row sub-container">
             <button id="add" onclick="chooser.display()" class="btn btn-outline-dark">+</button>
             <div id="log" class="col-3">
                 <div class="card">
@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <script src="../node_modules/chart.js/dist/Chart.js"></script>
+    <script src="JS/Chartjs/dist/Chart.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="JS/Chart.js"></script>
     <script src="JS/Local.js"></script>

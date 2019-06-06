@@ -1,9 +1,8 @@
 // restauration
 
 function saveLocalNetwork(val) {
-    let temp = JSON.parse(localStorage.getItem('network'));
-    temp[0] = val;
-    localStorage.setItem("network", JSON.stringify(temp));
+
+    localStorage.setItem("network", JSON.stringify([val]));
 }
 
 function saveLocalComputer() {
@@ -15,15 +14,11 @@ function saveLocalComputer() {
 }
 
 function saveLocalServer(val) {
-    let temp = JSON.parse(localStorage.getItem('server'));
-    temp[0] = val;
-    localStorage.setItem("server", JSON.stringify(temp));
+    localStorage.setItem("server", JSON.stringify([val]));
 }
 
 function saveLocalMap(val) {
-    let temp = JSON.parse(localStorage.getItem('map'));
-    temp[0] = val;
-    localStorage.setItem("map", JSON.stringify(temp));
+    localStorage.setItem("map", JSON.stringify([val]));
 }
 
 function initLocal() {
