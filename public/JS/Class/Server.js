@@ -31,6 +31,14 @@ class Server extends Info{
         }
     }
 
+    shutDown(){
+        this.state = false;
+    }
+
+    power(){
+        this.state = true;
+    }
+
     send(file, size, ip) {
         log(this.name,"envoie de fichier");
         network(file,size,ip);

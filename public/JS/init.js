@@ -4,12 +4,14 @@ function main() {
     network = new widget(new TemplateNetwork(new Network("supNetwork", true), "wifi.png"), 5);
     initImage();
     map = new widget(new TemplateMap(listRoom, "map.png"), 0)
+    projector = new widget(new TemplateProjector(new Projector("projector",false,network.template.object.giveIP()),"projector.png"))
     createComputeur();
     createPrinter();
     createClock();
     createServer();
     initEvent();
     initLocal();
+    initEventPeople();
 }
 
 function initImage() {
@@ -66,6 +68,7 @@ let chooser;
 let clock;
 let network;
 let server;
+let projector;
 let map;
 let listPeople = [];
 let listRoom = [];
@@ -90,7 +93,10 @@ function openDoor() {
 }
 
 function startAll() {
-
+    startComputer();
+    startNetwork();
+    startPrinter();
+    startServer();
 }
 
 function startComputer() {
@@ -107,6 +113,16 @@ function startPrinter() {
     log("Horloge","Allumages des imprimantes");
 }
 
+function startServer() {
+    server.template.object.power();
+    log("Horloge","Allumages des serveur");
+}
+
+function startNetwork() {
+    network.template.object.power();
+    log("Horloge","Allumages réseau");
+}
+
 function shutComputer() {
     for (let i = 0; i < listComputer.length; i++) {
         listComputer[i].template.object.shutDown();
@@ -121,11 +137,20 @@ function shutPrinter() {
 }
 
 function shutServer() {
+    server.template.object.shutDown()
+    log("Horloge","Extenctions des serveur");
+}
 
+function shutNetwork() {
+    network.template.object.shutDown();
+    log("Horloge","Extinction réseau");
 }
 
 function shutAll() {
-
+    shutComputer();
+    shutNetwork();
+    shutPrinter();
+    shutServer();
 }
 
 function backupAll() {
@@ -134,4 +159,33 @@ function backupAll() {
     }
     log("Serveur","Backup des ordinateurs");
     shutComputer();
+}
+
+//
+
+function initEventPeople(){
+    initPrint();
+    //initMeeting();
+}
+
+function initMeeting(){
+    for (let i = 0; i < 2; i++) {
+        new Meeting(Math.trunc(Math.random() * 10800) + 28800);
+    }
+}
+
+function initPrint(){
+    for(let i = 0; i < 50; i++){
+        clock.object.listEvent.push(new Event(Math.trunc(Math.random()*28000)+ 28800,dev.print));
+    }
+    for(let i = 0; i < 25; i++){
+        clock.object.listEvent.push(new Event(Math.trunc(Math.random()*28000) + 28800,senior.print));
+    }
+    for(let i = 0; i < 100; i++){
+        clock.object.listEvent.push(new Event(Math.trunc(Math.random()*28000)+ 28800,secret.print));
+    }
+}
+
+function initSave(){
+
 }

@@ -8,11 +8,10 @@ let dev = {
 }
 
 let senior = {
-    meet() {
-        if (listRoom[6].state && listRoom[6].meet.list.length < 2) {
+    meet(val) {
+        if (listRoom[6].meet.list.length < 2) {
             if (listRoom[6].meet.free) {
-                listRoom[6].meet.free = false;
-                new Meeting(clock.object.clock)
+                new Meeting(val)
             } else {
                 new Meeting(listRoom[6].meet.list[0].end.val)
             }
@@ -28,3 +27,4 @@ let secret = {
         listComputer[19].template.object.send("test.txt", 1024000, [10, 0, 0, 22])
     }
 }
+

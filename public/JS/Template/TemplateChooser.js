@@ -11,13 +11,13 @@ class TemplateChooser {
         node.appendChild(this.addMap());
         node.appendChild(this.addNetwork());
         node.appendChild(this.addServer());
+        node.appendChild(this.addProjector());
         node.className = "custom-select"
         base.appendChild(node);
         base.parentElement.id = "choice";
         this.disableButton();
     }
 
-    //a modifié
     addMap() {
         let group = document.createElement("optgroup");
         group.label = "Map";
@@ -26,6 +26,19 @@ class TemplateChooser {
         this.disableOption(map, option);
         option.addEventListener('click', function () {
             map.display();
+        });
+        group.appendChild(option);
+        return group;
+    }
+
+    addProjector() {
+        let group = document.createElement("optgroup");
+        group.label = "Projector";
+        let option = document.createElement("option");
+        option.appendChild(document.createTextNode("projector"));
+        this.disableOption(projector, option);
+        option.addEventListener('click', function () {
+            projector.display();
         });
         group.appendChild(option);
         return group;

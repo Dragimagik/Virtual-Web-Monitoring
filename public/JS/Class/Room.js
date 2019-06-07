@@ -37,12 +37,14 @@ class MeetingRoom extends Room{
     use(){
         if(listRoom[6].state ){
             listRoom[6].meet.free = false;
+            projector.template.object.power();
             log(listRoom[6].name,"utilisation pour une réunion");
         }
     }
 
     release(){
         listRoom[6].meet.free = true;
+        projector.template.object.shutDown();
         log(listRoom[6].name,"fin de réunion");
     }
 }
